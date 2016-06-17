@@ -33,5 +33,9 @@ public class MyShake extends AppCompatActivity implements SensorEventListener {
         if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.out.println("Values x: " + event.values[0] + " y: " + event.values[1] + " z: " + event.values[2]);
         }
+
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            SensorData data = new SensorData(event.values[0], event.values[1], event.values[2]);
+        }
     }
 }
