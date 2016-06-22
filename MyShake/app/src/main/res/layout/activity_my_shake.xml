@@ -9,4 +9,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.max.myshake.MyShake">
 
+    <com.example.max.myshake.FftDataView
+    android:id="@+id/fftView"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Print Dataset"
+        android:id="@+id/buttonPrint"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="140dp" />
+
 </RelativeLayout>

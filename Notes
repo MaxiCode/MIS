@@ -1,0 +1,5 @@
+Earthqake detection in Detail:
+- after fft compare the area from 0.5 to 7 Hz
+- calculation of correlation
+- 93 percent of everyday motion can be detected and successfily removed -> so 7 percent are false positives
+- 

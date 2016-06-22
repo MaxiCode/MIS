@@ -26,7 +26,7 @@
  *  https://www.ee.columbia.edu/~ronw/code/MEAPsoft/doc/html/FFT_8java-source.html
  */
 
-package com.example.max.lab3;
+package com.example.max.myshake;
 
 public class FFT {
 

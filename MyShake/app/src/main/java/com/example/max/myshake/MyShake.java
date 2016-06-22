@@ -1,16 +1,25 @@
 package com.example.max.myshake;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class MyShake extends AppCompatActivity implements SensorEventListener {
 
     SensorManager sensorManager;
+    FftDataView fftDataView;
+    Button printBtn;
+
+    ArrayList<SensorData> dataSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,25 @@ public class MyShake extends AppCompatActivity implements SensorEventListener {
         // read Sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),100000);
+
+        //
+        fftDataView = (FftDataView) findViewById(R.id.fftView);
+        fftDataView.setBackgroundColor(Color.GRAY);
+
+        printBtn = (Button) findViewById(R.id.buttonPrint);
+
+        printBtn.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < dataSet.size(); ++i) {
+                    SensorData item = dataSet.get(i);
+                    System.out.println("Dataset = X: " + item.getX() + " Y: " + item.getY() + " Z: " + item.getZ());
+                }
+            }
+        });
     }
 
     @Override
@@ -30,12 +58,17 @@ public class MyShake extends AppCompatActivity implements SensorEventListener {
     @Override
     public final void onSensorChanged(SensorEvent event) {
         // works :)
-        if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            System.out.println("Values x: " + event.values[0] + " y: " + event.values[1] + " z: " + event.values[2]);
-        }
+        //if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+        //    System.out.println("Values x: " + event.values[0] + " y: " + event.values[1] + " z: " + event.values[2]);
+        //}
+
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             SensorData data = new SensorData(event.values[0], event.values[1], event.values[2]);
+
+            this.fftDataView.addData(data);
+            this.fftDataView.invalidate();
+            dataSet = this.fftDataView.getDataset();
         }
     }
 }
