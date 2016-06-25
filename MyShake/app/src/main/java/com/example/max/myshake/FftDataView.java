@@ -45,13 +45,6 @@ public class FftDataView extends SensorView {
             //do the fft
 
             fft.fft(x, y);
-            System.out.println("Start fft");
-            double tmp[] = x;
-            Arrays.sort(tmp);
-            for (int i = 0; i<tmp.length; ++i){
-                System.out.println(tmp[i]);
-                ++i;
-            }
 
             //calc the magnitude of the resulting real and imaginary parts
             //since we have both parts real and imaginary in the result the plot is mirrored in the middle
